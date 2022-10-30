@@ -9,8 +9,12 @@ github.com/mattn/go-isatty v0.0.16/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/samuelmachado/go-core/env v0.1.0 h1:zydVkn49Eeb4e55gEEAk68vKj2Qi5a4992lBgEu/O4U=
+github.com/samuelmachado/go-core/env v0.1.0/go.mod h1:8sK7fzv2a4hDi18HegX0jOlgh9wpKEkcoUpIC2mR7wI=
 github.com/samuelmachado/go-core/log v0.1.0 h1:LmG1lBAAavl8S56V5ROO5yVcToX7vgjmkk+ywLg2wTY=
 github.com/samuelmachado/go-core/log v0.1.0/go.mod h1:oyt1uviLZtxa+KhLZJDog6cKEwAM8zuKeWC8/aDaqrA=
+github.com/sethvargo/go-envconfig v0.8.2 h1:DDUVuG21RMgeB/bn4leclUI/837y6cQCD4w8hb5797k=
+github.com/sethvargo/go-envconfig v0.8.2/go.mod h1:Iz1Gy1Sf3T64TQlJSvee81qDhf7YIlt8GMUX6yyNFs0=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 go.uber.org/atomic v1.7.0 h1:ADUqmZGgLDDfbSL9ZmPxKTybcoEYHgpYfELNoN+7hsw=

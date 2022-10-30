@@ -38,7 +38,7 @@ func New(ctx context.Context) (context.Context, *Dependency, error) {
 
 func setupComponents(_ context.Context) (*components, error) {
 
-	log, err := log.NewLoggerZap(log.ZapConfig{
+	logInstance, err := log.NewLoggerZap(log.ZapConfig{
 		Version:           "v0.1.0",
 		DisableStackTrace: false,
 	})
@@ -47,6 +47,6 @@ func setupComponents(_ context.Context) (*components, error) {
 	}
 
 	return &components{
-		Log: log,
+		Log: logInstance,
 	}, nil
 }

@@ -15,3 +15,13 @@
 # vendor/
 vcs.xml
 modules.xml
+
+.idea
+bin/
+.vscode
+*.pb.go
+*.env
+.DS_Store
+.editorconfig
+*_mock.go
+tmp
