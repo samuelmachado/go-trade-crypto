@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	tradeCrypto "github.com/samuelmachado/go-trade-crypto"
+	"math/rand"
+	"time"
 
 	//tradeCrypto "github.com/samuelmachado/go-trade-crypto"
 	"github.com/samuelmachado/go-trade-crypto/internal/container"
@@ -14,6 +16,12 @@ import (
 
 func main() {
 	ctx := context.Background()
+	rand.Seed(time.Now().UnixNano())
+
+	if os.Getenv("ENV") == "" || os.Getenv("ENV") == "dev" {
+		tradeCrypto.LoadEnvFromFile("env/application.env")
+		log.Println("Environment variables have not been set on the OS. We load from a file, this should only be used for local development")
+	}
 
 	ctx, dep, err := container.New(ctx)
 	if err != nil {
@@ -27,14 +35,6 @@ func run(ctx context.Context, dep *container.Dependency) {
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, syscall.SIGTERM, syscall.SIGINT, syscall.SIGQUIT)
 	defer signal.Stop(interrupt)
-
-	if os.Getenv("ENV") == "" || os.Getenv("ENV") == "dev" {
-		tradeCrypto.LoadEnvFromFile("env/application.env")
-		dep.Components.Log.Warn(
-			ctx,
-			"Environment variables have not been set on the OS. We load from a file, this should only be used for local development",
-		)
-	}
 
 	dep.Components.Log.Info(
 		ctx,
