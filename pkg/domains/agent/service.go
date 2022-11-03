@@ -31,7 +31,7 @@ func NewService(orderService order.ServiceI, log log.Logger) (*Service, error) {
 
 func (s *Service) Buy(ctx context.Context, ag *Agent, symbol string, price float64) error {
 
-	s.Log.Info(ctx, "starting buying", log.Any("agent_id", ag.ID), log.Any("symbol", symbol))
+	s.Log.Info(ctx, "starting buying", log.Any("agent_id", ag.ID), log.Any("agent_name", ag.Name), log.Any("symbol", symbol))
 	if ag.ActiveOrders >= ag.MaxActiveOrders {
 		return ErrMaxActiveOrders
 	}
@@ -43,23 +43,23 @@ func (s *Service) Buy(ctx context.Context, ag *Agent, symbol string, price float
 	amountQuota := (ag.Wallet / 100) * ag.QuotaPerOrder
 	total := amountQuota / price
 
-	s.Log.Info(ctx, "total selected for buy", log.Any("agent_id", ag.ID), log.Any("symbol", symbol), log.Any("total", total), log.Any("unit_price", price))
+	s.Log.Info(ctx, "total selected for buy", log.Any("agent_id", ag.ID), log.Any("agent_name", ag.Name), log.Any("symbol", symbol), log.Any("total", total), log.Any("unit_price", price))
 
 	od, err := order.NewOrder(symbol, total)
 	if err != nil {
 		return ErrUnableToCreateOrder
 	}
 
-	s.Log.Info(ctx, "order created", log.Any("agent_id", ag.ID), log.Any("symbol", symbol), log.Any("order_id", od.ID))
+	s.Log.Info(ctx, "order created", log.Any("agent_id", ag.ID), log.Any("agent_name", ag.Name), log.Any("symbol", symbol), log.Any("order_id", od.ID))
 
 	err = s.OrderService.Buy(ctx, &od)
 	if err != nil {
 		return ErrUnableToExecuteOrder
 	}
-	s.Log.Info(ctx, "placed to execute", log.Any("agent_id", ag.ID), log.Any("symbol", symbol), log.Any("order_id", od.ID))
+	s.Log.Info(ctx, "placed to execute", log.Any("agent_id", ag.ID), log.Any("agent_name", ag.Name), log.Any("symbol", symbol), log.Any("order_id", od.ID))
 
 	ag.Orders = append(ag.Orders, od)
-	s.Log.Info(ctx, "active orders", log.Any("agent_id", ag.ID), log.Any("orders", len(ag.Orders)))
+	s.Log.Info(ctx, "active orders", log.Any("agent_id", ag.ID), log.Any("agent_name", ag.Name), log.Any("orders", len(ag.Orders)))
 
 	return nil
 }
